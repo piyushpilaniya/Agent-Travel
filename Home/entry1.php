@@ -80,42 +80,42 @@
           <div class="col-md-10 text-center">
            
             <!-- Ask the user for the input in form of a form and Checkbox  -->
-  <form class="form-horizontal">
+  <form class="form-horizontal" method="post" action="../Nearby Sites/index.php">
   <div class="form-group">
     <label for="exampleInputEmail1" class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">Where you're heading</label>
     <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Location"> -->
-    <input type="text" id="YOUR_INPUT_ELEMENT_ID" class="form-control" placeholder="Enter Location" />
+    <input type="text" id="YOUR_INPUT_ELEMENT_ID" class="form-control" placeholder="Enter Location" name="city" />
   </div>
   
   
    <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" > Weather
+      <input type="checkbox" name="chk[]" value="Weather"> Weather
     </label>
   </div>
 
  <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" > Hotels
+      <input type="checkbox" name="chk[]" value="Hotels"> Hotels
     </label>
   </div>
   <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" > Nearby Sites
+      <input type="checkbox" name="chk[]" value="Nearby Sites"> Nearby Sites
     </label>
   </div>
   <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" > Emergency Numbers
+      <input type="checkbox" name="chk[]" value="Emergency Numbers"> Emergency Numbers
     </label>
   </div>
   <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" > Transportation
+      <input type="checkbox" name="chk[]" value="Transportation"> Transportation
     </label>
   </div>
   
-  <button type="submit" class="btn btn-default" id="btnQueryString">Submit</button>
+  <button type="submit" class="btn btn-default" id="btnQueryString" name="submit">Submit</button>
 
 
 </form>
