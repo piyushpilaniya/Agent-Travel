@@ -924,3 +924,9 @@ textarea.form-control {
   -webkit-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2);
 }
+
+
+.move-left {
+    width: auto;
+    box-shadow: none;
+  }
