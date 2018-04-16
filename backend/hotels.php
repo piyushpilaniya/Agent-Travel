@@ -4,7 +4,7 @@
 	<title>hotels</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale = 1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="nearby.css">
+	<link rel="stylesheet" type="text/css" href="hotels.css">
 	</head>
 <body>
 
