@@ -25,6 +25,8 @@
  +				$data->company_id = $row["company_id"];
  +				$data->availability = $row["availability"];
 				$data->fare = $row["fare"];
+	 			$data->contact = $row["driver_contact"];
+	 			$data->return_policy = $row["return_policy"];
 				
  +			}
  +			else{
