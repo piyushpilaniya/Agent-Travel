@@ -4,7 +4,7 @@
 	<title>hotels</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale = 1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="nearby.css">
+	<link rel="stylesheet" type="text/css" href="hotels.css">
 	</head>
 <body>
 
@@ -25,7 +25,7 @@ $data = new stdClass();
 				$data->availability = $row["availability"];
 			}
 			else{
-				$data->status = "No hotels found in the given region = ";
+				$data->status = "No hotels found in the given region.";
 			}
 		}
 		else{
