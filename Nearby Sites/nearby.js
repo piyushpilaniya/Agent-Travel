@@ -28,7 +28,7 @@ function initialize(){
 
 	request = {
 		location: center,
-		radius: 8047,
+		radius: rad,
 		types: ['cafe']
 	};
 
