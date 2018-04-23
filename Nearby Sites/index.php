@@ -5,19 +5,25 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale = 1.0, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="nearby.css">
-	<script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBlGQTCzJ2JtXevw8xPqL9AGeyrctFR7A4"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBlGQTCzJ2JtXevw8xPqL9AGeyrctFR7A4&libraries=places"></script>
+	
+	<script src="https://cdn.rawgit.com/stevenmonson/googleReviews/6e8f0d79/google-places.js"></script>
+
+
 	
 </head>
 <body>
 	<?php
 	 $city = $_POST['city'];
 	 $chkbox = $_POST['chk'];
+	 $weather = "";
+	 echo $city;
 	  foreach ($chkbox as $hobys) {
              echo "Selection : ".$hobys."<br />";
-
-             if($hobys == 'Weather')
-             {
-             	echo "string";
+     ?>
+     <?php if($hobys == 'Weather') :?>
+             <?php
              	function curl($url) {
 		        
 		            $ch = curl_init();
@@ -42,30 +48,46 @@
 		        
 		        $weather .=" The temperature is ".$tempInFahrenheit."&deg; F with a wind speed of ".$speedInMPH." MPH.";
 		        echo $weather;
+		        ?>
+		<?php endif; ?>
 
-             }
-
-             else
-             {
-             	echo '<script type="text/javascript">var city = "<?= $city ?>";</script>
-	 <script type="text/javascript">var rad = 8047;</script>
-	<h1>The Default radius for search is 5 miles. Put your radius of interest if you want to(in meters)!</h1>';
+		 <?php if($hobys == 'Hotels') :?>
+             	<script type="text/javascript">var city = "<?= $city ?>";</script>
+                <script type="text/javascript">var rad = 8047;</script>
 				
-		session_start();
-		$_SESSION['city'] = $city;
-		$_SESSION['chkbox'] = $chkbox;
+				<h1>The Default radius for search is 5 miles</h1>
+				<div id="mapped"></div>
+				<script type="text/javascript" src="../backend/hotels.js"></script>
+		
+				
 
-		echo '<form action="radius.php" method="post">
-	 <input type="text" id="radius1"  placeholder="Radius" name="radius" />
-	 <button type="submit"  id="btn" name="submit">Go</button>
-	 </form>
-	 <div id="map"></div>
-	 <script type="text/javascript" src="nearby.js"></script>';
+             <?php endif; ?>
 
-             }
-        }
+        <?php if($hobys == 'Nearby Sites') :?>
+             	<script type="text/javascript">var city = "<?= $city ?>";</script>
+                <script type="text/javascript">var rad = 8047;</script>
+				<h1>The Default radius for search is 5 miles. Put your radius of interest if you want to(in meters)!</h1>
+				<form action="radius.php" method="post">
+				<input type="text" id="radius1"  placeholder="Radius" name="radius" />
+				<button type="submit"  id="btn" name="submit">Go</button>
+				</form>
+				<div id="map"></div>
 
-	 ?>
+				<script type="text/javascript" src="nearby.js"></script>
+		
+				<?php	
+					session_start();
+					$_SESSION['city'] = $city;
+					$_SESSION['chkbox'] = $chkbox;
+					$_SESSION['weather'] = $weather;
+					?>
+
+             <?php endif; ?>
+       <?php 
+   		}
+   		?> 
+
+	 		
 	 
     
 
