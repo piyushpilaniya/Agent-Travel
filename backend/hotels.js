@@ -21,7 +21,7 @@ console.log(lon);
 
 function initialize(){
 	var center = new google.maps.LatLng(lat, lon);
-	map = new google.maps.Map(document.getElementById('map'),{
+	map = new google.maps.Map(document.getElementById('mapped'),{
 			center: center,
 			zoom: 13
 	});
@@ -81,5 +81,7 @@ function clearResults(markers){
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
 
