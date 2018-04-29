@@ -8,15 +8,15 @@ USE travel_agent;
 CREATE TABLE vehicles(
 	  vehicle_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	  company_id SMALLINT UNSIGNED NOT NULL,
-	  departure_time VARCHAR(45) NOT NULL,
-	  arrival_time VARCHAR(45) NOT NULL,
-	  boarding_point VARCHAR(45) NOT NULL,
-	  dropping_point VARCHAR(45) NOT NULL, 
+	  departure_time VARCHAR(45),
+	  arrival_time VARCHAR(45),
+	  boarding_point VARCHAR(45),
+	  dropping_point VARCHAR(45), 
 	  vehicle_facility_id SMALLINT UNSIGNED NOT NULL,
-	  availability INT NOT NULL,
-	  fare INT NOT NULL,
-	  driver_contact VARCHAR(45) NOT NULL,
-	  return_policy VARCHAR(100) NOT NULL,
+	  availability INT,
+	  fare INT,
+	  driver_contact VARCHAR(45),
+	  return_policy VARCHAR(100),
 
 	  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	  PRIMARY KEY  (vehicle_id),
@@ -31,10 +31,10 @@ CREATE TABLE vehicles(
 
 CREATE TABLE vehicle_facility(
 	vehicle_facility_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	facility_ac SMALLINT NOT NULL,
-	facility_wifi SMALLINT NOT NULL,
-	facility_refreshment SMALLINT NOT NULL,
-	facility_any_other VARCHAR(103) NOT NULL,
+	facility_ac SMALLINT,
+	facility_wifi SMALLINT,
+	facility_refreshment SMALLINT,
+	facility_any_other VARCHAR(103),
 
 	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -44,13 +44,13 @@ CREATE TABLE vehicle_facility(
 
 CREATE TABLE company(
 	company_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	company_name VARCHAR(197) NOT NULL, 
-	office_address VARCHAR(197) NOT NULL,
-	city VARCHAR(97) NOT NULL,
-	state VARCHAR(99) NOT NULL,
-	pincode INT NOT NULL, 
-	company_contact VARCHAR(45) NOT NULL,
-	company_email VARCHAR(45) NOT NULL,
+	company_name VARCHAR(197), 
+	office_address VARCHAR(197),
+	city VARCHAR(97),
+	state VARCHAR(99),
+	pincode INT, 
+	company_contact VARCHAR(45),
+	company_email VARCHAR(45),
 
 	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
