@@ -57,4 +57,3 @@ CREATE TABLE company(
 	PRIMARY KEY  (company_id)
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
