@@ -1,0 +1,9 @@
+div[id^=map_canvas], 
+div[id^=map_canvas] div {overflow: auto;}
+
+ html,body,#mapped{
+	height: 100%;
+	margin :0px;
+	padding: 0px;
+	
+}

@@ -1,15 +1,15 @@
-
+var city = window.opener.city; 
+var rate = window.opener.rate;
+var rad = window.opener.rad;
+console.log(rate);
+console.log(city);
 var map;
 var infowindow;
-var loop = 1;
+
 var request;
 var service;
 var markers = [];
-var text = document.getElementById('data');
-var ratLimit = "";
-var rate = "";
-var str = "";
-console.log(city);
+// console.log(city);
 var geocoder = new google.maps.Geocoder();
 var lat,lon;
 geocoder.geocode( { 'address': city}, function(results, status) {
@@ -24,20 +24,18 @@ console.log(lat);
 console.log(lon);
 console.log("hey");
 function initialize(){
-	str = "";
-	loop = 1;
-	ratLimit = document.getElementById('mySelect');
-	rate = ratLimit.value;
-	console.log(rate);
+	// str = "";
+	// ratLimit = document.getElementById('mySelect');
+	// rate = ratLimit.value;
+	console.log("hi");
 	// console.log("initialize");
-	console.log("initialize");
-
+	// google.maps.event.trigger(map, "resize");
 	var center = new google.maps.LatLng(lat, lon);
 	map = new google.maps.Map(document.getElementById('mapped'),{
 			center: center,
 			zoom: 13
 	});
-
+	google.maps.event.trigger(map, "resize");
 	request = {
 		location: center,
 		radius: rad,
@@ -46,12 +44,8 @@ function initialize(){
 
 	infowindow = new google.maps.InfoWindow();
 	service = new google.maps.places.PlacesService(map);
-		console.log("begin");
-
 	service.nearbySearch(request, callback);
-		console.log("end");
-
-	document.getElementById('mapped').style.visibility = 'visible';
+	// document.getElementById('mapped').style.visibility = 'visible';
 	google.maps.event.addListener(map, 'rightclick', function(event){
 		map.setCenter(event.latLng);
 		clearResults(markers);
@@ -77,31 +71,21 @@ function callback(results, status){
 }
 
 function createMarker(place){
-	console.log("createMarker");
-	console.log(place.rating);
-	console.log(parseInt(rate));
-
 	if(place.rating>parseInt(rate))
 	{
-	var dummy = str + loop + ". " + place.name+"  "+place.rating+"\n";
-	str = dummy;
-	console.log(str);
-	loop = loop+1;
-	text.textContent = str;
-	text.innerHTML = text.innerHTML.replace(/\n/gi, "<br />");
-	}
+	console.log(place);
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 		map: map,
 		position: place.geometry.location 
 	});
 
+
 	google.maps.event.addListener(marker, 'click', function(){
 		infowindow.setContent(place.name);
-		infowindow.setContent(place.rating);
 		infowindow.open(map, this);
-		
 	});
+}
 	return marker;
 }
 
@@ -115,7 +99,3 @@ function clearResults(markers){
 	
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-//function myFunction() {
-	// fun();
-//}

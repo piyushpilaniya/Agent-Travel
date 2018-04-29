@@ -4,12 +4,12 @@ var loop;
 var request1, request2, request3, request4, request5, request6;
 var service;
 var markers = [];
-
-var text = document.getElementById('nearbyData');
+var city = window.opener.city; 
+var rate = window.opener.rate;
 var ratLimit = "";
-var rate = "";
-var str = Array();
 
+var str ;
+var rad = window.opener.rad;
 console.log("city is "+city);
 var geocoder = new google.maps.Geocoder();
 var lat,lon;
@@ -24,14 +24,14 @@ geocoder.geocode( { 'address': city}, function(results, status) {
 console.log(lat);
 console.log(lon);
 var center;
-function initialize1(){
+function initialize(){
 	// console.log("Hey");
-	str = [];
+	str = Array();
 	loop = 0;
-	ratLimit = document.getElementById('mySelect');
-	rate = ratLimit.value;
+	// ratLimit = document.getElementById('mySelect');
+	// rate = 4;
 	center = new google.maps.LatLng(lat, lon);
-	map = new google.maps.Map(document.getElementById('map'),{
+	map = new google.maps.Map(document.getElementById('mapped'),{
 			center: center,
 			zoom: 13
 	});
@@ -147,25 +147,27 @@ function sortFunction(a, b) {
 
 function createMarker(place){
 	// console.log(place.types[0]);
-	if(place.rating>parseInt(rate))
-	{
-		var review='';
-		if(place.reviews){
-			review = place.reviews;
-		}
-		else{
-			review = "Not Available";
-		}
-		var dummy = place.name+"  "+place.rating+place.types[0]+review+"\n";
-		str.push([place.name, place.rating, place.types[0],review,"\n"]);
-		str.sort(sortFunction);
-		console.log(str);
-		loop = loop+1;
-		text.textContent = str;
-		text.innerHTML = text.innerHTML.replace(/\n/gi, "<br />");
-		text.innerHTML = text.innerHTML.replace(/,/gi, " ");
-	}
+	// if(place.rating>parseInt(rate))
+	// {
+	// 	var review='';
+	// 	if(place.reviews){
+	// 		review = place.reviews;
+	// 	}
+	// 	else{
+	// 		review = "Not Available";
+	// 	}
+	// 	var dummy = place.name+"  "+place.rating+place.types[0]+review+"\n";
+	// 	str.push([place.name, place.rating, place.types[0],review,"\n"]);
+	// 	str.sort(sortFunction);
+	// 	console.log(str);
+	// 	loop = loop+1;
+	// 	text.textContent = str;
+	// 	text.innerHTML = text.innerHTML.replace(/\n/gi, "<br />");
+	// 	text.innerHTML = text.innerHTML.replace(/,/gi, " ");
+	// }
 
+	 if(place.rating>parseInt(rate))
+	{
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 		map: map,
@@ -184,13 +186,14 @@ function createMarker(place){
 	        ratingHtml += '&#10029;';
 	      }
 	    infowindow.setContent('');
-	    
+	    infowindow.setContent(place.name +" "+ratingHtml);
 	    }
 	  } else {
 	    infowindow.setContent('none');
 	  }
 	});
 	console.log(ratingHtml);
+}
 	// console.log(place.name+" "+place.rating);
 	return marker;
 }
@@ -203,6 +206,6 @@ function clearResults(markers){
 }
 
 
-google.maps.event.addDomListener(window, 'load', initialize1);
+google.maps.event.addDomListener(window, 'load', initialize);
 
 

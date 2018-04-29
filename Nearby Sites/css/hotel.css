@@ -1,0 +1,14 @@
+#data{
+	float: left;
+	font-size: 25px;
+}
+
+.lmt{
+	font-size: 25px;
+	color: #000;
+}
+
+#mapped{
+	position: absolute;
+	visibility: hidden;
+}

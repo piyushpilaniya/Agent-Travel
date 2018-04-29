@@ -1,0 +1,10 @@
+
+#CITY{
+  color: #000;
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 1.4px;
+  border-bottom: solid 1px #006600;
+  text-transform: uppercase;
+  background: rgba(205, 197, 197, 0.5);
+}

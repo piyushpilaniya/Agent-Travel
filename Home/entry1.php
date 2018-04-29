@@ -17,6 +17,50 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/entry1.js"></script>
+
+    <style>
+      .dropbtn {
+          background-color: #3498DB;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+      }
+
+      .dropbtn:hover, .dropbtn:focus {
+          background-color: #2980B9;
+      }
+
+      .dropdown {
+          float: right;
+          position: relative;
+          display: inline-block;
+      }
+
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+      }
+
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+      }
+
+      .dropdown a:hover {background-color: #ddd}
+
+      .show {display:block;}
+
+    </style>
+
   </head>
   <body>
     
@@ -106,21 +150,51 @@
   </div>
   <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
-      <input type="checkbox" name="chk[]" value="Emergency Numbers"> Emergency Numbers
-    </label>
-  </div>
-  <div  class="checkbox" >
-    <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
       <input type="checkbox" name="chk[]" value="Transportation"> Transportation
     </label>
   </div>
   
-  <button type="submit" class="btn btn-default" id="btnQueryString" name="submit">Submit</button>
+  <button type="submit" class="btn btn-default" id="btnQueryString" name="submit" data-aos="fade-up" data-aos-delay="100">Submit</button>
 
 
 </form>
-
+<!-- <a href="../Nearby Sites/Contacts.html" style="float: right;font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia;
+  border-bottom: 2px solid #444; ">See Emergency Numbers</a> -->
 <!-- Form and checkbox ends here -->
+
+<div class="dropdown" data-aos="fade-up" data-aos-delay="100">
+<button onclick="myFunction()" class="dropbtn">Get Contact Info</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="../Nearby Sites/Contacts.php?value=police">Police</a>
+    <a href="../Nearby Sites/Contacts.php?value=hospital">Hospital</a>
+    <a href="../Nearby Sites/Contacts.php?value=doctor">Doctor</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
           </div>
         </div>
@@ -184,4 +258,4 @@
 
 
 9648
-AIzaSyAtXJ3El7ZsueYDx6kD1G2R1AaEt1DuENg
+AIzaSyAtXJ3El7ZsueYDx6kD1G2R1AaEt1DuENg 

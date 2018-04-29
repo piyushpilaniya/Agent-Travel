@@ -13,23 +13,35 @@ var autocomplete;
 var countryRestrict = {'country': 'ind'};
 var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
 var hostnameRegexp = new RegExp('^https?://.+?/');
+// var checkedValue = document.querySelector('.messageCheckbox:checked').value;
+// console.log(checkedValue);
+// type = 'police';
+// window.onload = onPageLoad();
+console.log(type);
+// function onPageLoad() {
+//   document.querySelector('.messageCheckbox:checked').checked = true;
+// }
+// // document.exampleform.submit();
+
 
 var countries = {
-  'us': {
-    center: {lat: 37.1, lng: -95.7},
-    zoom: 3
-  },
+  // 'us': {
+  //   center: {lat: 37.1, lng: -95.7},
+  //   zoom: 3
+  // },
   'ind': {
     center: {lat: 20.6, lng: 78.9},
-    zoom: 3
-  },
-  'uk': {
-    center: {lat: 54.8, lng: -4.6},
-    zoom: 5
+    zoom: 13
   }
+  // ,
+  // 'uk': {
+  //   center: {lat: 54.8, lng: -4.6},
+  //   zoom: 5
+  // }
 };
 
 function initMap() {
+  console.log("init");
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: countries['ind'].zoom,
     center: countries['ind'].center,
@@ -43,6 +55,8 @@ function initMap() {
     content: document.getElementById('info-content')
   });
 
+    
+
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
@@ -52,18 +66,20 @@ function initMap() {
         componentRestrictions: countryRestrict
       });
   places = new google.maps.places.PlacesService(map);
-
   autocomplete.addListener('place_changed', onPlaceChanged);
-
+  // onPlaceChanged(autocomplete);
   // Add a DOM event listener to react when the user selects a country.
-  document.getElementById('country').addEventListener(
-      'change', setAutocompleteCountry);
+  // document.getElementById('country').addEventListener(
+  //     'change', setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 function onPlaceChanged() {
+  console.log("placechange");
   var place = autocomplete.getPlace();
+  // var place = "Jammu";
+  console.log("ont "+place.place_id);
   if (place.geometry) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
@@ -75,9 +91,10 @@ function onPlaceChanged() {
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
+  console.log("search");
   var search = {
     bounds: map.getBounds(),
-    types: ['lodging']
+    types: [type]
   };
 
   places.nearbySearch(search, function(results, status) {
@@ -117,20 +134,20 @@ function clearMarkers() {
 
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
-function setAutocompleteCountry() {
-  var country = document.getElementById('country').value;
-  if (country == 'all') {
-    autocomplete.setComponentRestrictions({'country': []});
-    map.setCenter({lat: 15, lng: 0});
-    map.setZoom(2);
-  } else {
-    autocomplete.setComponentRestrictions({'country': country});
-    map.setCenter(countries[country].center);
-    map.setZoom(countries[country].zoom);
-  }
-  clearResults();
-  clearMarkers();
-}
+// function setAutocompleteCountry() {
+//   var country = document.getElementById('country').value;
+//   if (country == 'all') {
+//     autocomplete.setComponentRestrictions({'country': []});
+//     map.setCenter({lat: 15, lng: 0});
+//     map.setZoom(2);
+//   } else {
+//     autocomplete.setComponentRestrictions({'country': country});
+//     map.setCenter(countries[country].center);
+//     map.setZoom(countries[country].zoom);
+//   }
+//   clearResults();
+//   clearMarkers();
+// }
 
 function dropMarker(i) {
   return function() {
@@ -192,6 +209,7 @@ function buildIWContent(place) {
       '">' + place.name + '</a></b>';
   document.getElementById('iw-address').textContent = place.vicinity;
 
+
   if (place.formatted_phone_number) {
     document.getElementById('iw-phone-row').style.display = '';
     document.getElementById('iw-phone').textContent =
@@ -199,7 +217,6 @@ function buildIWContent(place) {
   } else {
     document.getElementById('iw-phone-row').style.display = 'none';
   }
-
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
   // to indicate the rating the hotel has earned, and a white star ('&#10025;')
   // for the rating points not achieved.
@@ -220,6 +237,7 @@ function buildIWContent(place) {
 
   // The regexp isolates the first part of the URL (domain plus subdomain)
   // to give a short URL for displaying in the info window.
+  
   if (place.website) {
     var fullUrl = place.website;
     var website = hostnameRegexp.exec(place.website);
@@ -231,5 +249,5 @@ function buildIWContent(place) {
     document.getElementById('iw-website').textContent = website;
   } else {
     document.getElementById('iw-website-row').style.display = 'none';
-  }
+}
 }
