@@ -5,9 +5,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 USE travel_agent;
 
 create table login(
-login_id UNSIGNED INT NOT NULL AUTO INCREMENT,
+login_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 username VARCHAR(30),
-password VARCHAR(30),
+passwords VARCHAR(30),
 first_name VARCHAR(50),
 last_name VARCHAR(50),
 category VARCHAR(20),
