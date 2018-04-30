@@ -18,7 +18,6 @@ CREATE TABLE vehicles(
 	  driver_contact VARCHAR(45),
 	  return_policy VARCHAR(100),
 
-	  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	  PRIMARY KEY  (vehicle_id),
 
 	  KEY idx_fk_vehicle_facility_id (vehicle_facility_id),
@@ -34,10 +33,8 @@ CREATE TABLE vehicle_facility(
 	facility_ac SMALLINT,
 	facility_wifi SMALLINT,
 	facility_refreshment SMALLINT,
-	facility_any_other VARCHAR(103),
-
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+	
+	
 	PRIMARY KEY  (vehicle_facility_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,8 +49,7 @@ CREATE TABLE company(
 	company_contact VARCHAR(45),
 	company_email VARCHAR(45),
 
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+		
 	PRIMARY KEY  (company_id)
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
