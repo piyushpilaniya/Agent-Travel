@@ -17,7 +17,7 @@ CREATE TABLE hotel(
 	  facility_id SMALLINT UNSIGNED NOT NULL,
 	  amenity_id SMALLINT UNSIGNED NOT NULL,
 	  availability INT,
-	  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	  
 	  PRIMARY KEY  (hotel_id),
 
 	  KEY idx_fk_facility_id (facility_id),
@@ -40,24 +40,20 @@ CREATE TABLE facility(
 	facility_geyser SMALLINT,
 	price INT,
 	taken INT,
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+	
 	PRIMARY KEY  (facility_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE address(
 	address_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	longitude FLOAT,
-	latitude FLOAT,
 	address_line1 VARCHAR(197), 
 	address_line2 VARCHAR(197),
 	city VARCHAR(97),
 	state VARCHAR(99),
 	pincode INT, 
 
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+	
 	PRIMARY KEY  (address_id)
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -73,8 +69,7 @@ CREATE TABLE amenity(
 	gym INT,
 	any_other VARCHAR(109), 
 
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+	
 	PRIMARY KEY  (amenity_id)
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
