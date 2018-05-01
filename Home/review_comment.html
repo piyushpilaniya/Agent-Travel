@@ -58,33 +58,35 @@
 
 
 <body background="def.jpg";background-repeat="no-repeat";>
+<form action="review.php" method="post" name="register" class="register">
 <center>
 <h1>Welcome to Review Portal</h1>
 <h2>Review and leave your Comment Here</h2>
 <br>
+<h3>Email Id:</h3>
+    <textarea rows="1" cols="40" name="email"></textarea><br>
+<h3>Review/Comment for : </h3>
+  <p><input type="radio" name="is" value="hotel" /> Hotel</p>
+  <p><input type="radio" name="is" value="transport" /> Transport</p>
 
-<h3>Enter Hotel Name:</h3>
-<form method="post" action="comment.php">
-    <textarea rows="2" cols="60" name="hotel_name"></textarea><br>
-</form>
+<h3>Enter Hotel/Transport Name:</h3>
+    <textarea rows="2" cols="60" name="name"></textarea><br>
 <h3>Enter the rating:</h3>
 <div class="txt-center">
 <center>
-    <form>
         <div class="rating">
-            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+            <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" />
             <label for="star5">☆</label>
-            <input id="star4" name="6star" type="radio" value="4" class="radio-btn hide" />
+            <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
             <label for="star4">☆</label>
-            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+            <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
             <label for="star3">☆</label>
-            <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+            <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
             <label for="star2">☆</label>
-            <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+            <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
             <label for="star1">☆</label>
             <div class="clear"></div>
         </div>
-    </form>
     </center>
 </div>
 
@@ -92,12 +94,9 @@
 <br>
 
 <h3>Enter the comment:</h3>
-<form method="post" action="comment.php">
-    <textarea rows="8" cols="60" name="comments"></textarea><br>
-    <input style="height:50px; width:200px" name="comment" type="submit" />
-</form>
-			
+    <textarea rows="8" cols="60" name="comment"></textarea><br>
+            <div><button id="submit_button" name="action" class="button">Submit &raquo;</button></div>			
 			</center>
-
+</form>
 </body>
 </html>
