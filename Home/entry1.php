@@ -85,7 +85,7 @@
                     <div class="col-md-6">
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="../about/index.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                       </ul>
                     </div>
@@ -101,9 +101,9 @@
                         <div class="col-md-6">
                           <h3>Connect With Us</h3>
                           <ul class="list-unstyled">
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Instagram</a></li>
+                            <li><a href="https://twitter.com">Twitter</a></li>
+                            <li><a href="https://www.facebook.com">Facebook</a></li>
+                            <li><a href="https://www.instagram.com">Instagram</a></li>
                           </ul>
                         </div>
                       </div>
@@ -226,10 +226,10 @@ window.onclick = function(event) {
           <div class="col-md-3 mb-5">
          
             <ul class="list-unstyled link">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="../about/index.html">About Us</a></li>
+              <li><a href="../terms_condition/tandc.html">Terms &amp; Conditions</a></li>
+              <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+              <li><a href="../Contact/contact.html">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
