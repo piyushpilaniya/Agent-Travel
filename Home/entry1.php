@@ -131,7 +131,12 @@
     <input type="text" id="YOUR_INPUT_ELEMENT_ID" class="form-control" placeholder="Enter Location" name="city" />
   </div>
   
-  
+  <input id="prodId" name="prodId" type="hidden" value="xm234jq">
+  <script >
+ 
+  getLocation();
+
+  </script>
    <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
       <input type="checkbox" name="chk[]" value="Weather"> Weather
@@ -151,13 +156,17 @@
   <div  class="checkbox" >
     <label class="sub-heading mb-2" data-aos="fade-up" data-aos-delay="100">
       <input type="checkbox" name="chk[]" value="Transportation"> Transportation
+      <input type="text" name="depart" class="form-control" placeholder="Enter Your Boarding Point">
     </label>
   </div>
   
-  <button type="submit" class="btn btn-default" id="btnQueryString" name="submit" data-aos="fade-up" data-aos-delay="100">Submit</button>
-
-
+  <!-- <button type="submit" class="btn btn-default" id="btnQueryString" name="submit1" data-aos="fade-up" data-aos-delay="100">Submit</button>
+  <button  type="submit" class="btn btn-default" id="btnQueryString" name="submit2" data-aos="fade-up" data-aos-delay="100" onclick="getLocation()">Use Current Location</button>
+   -->
+   <input type="submit" name="submit1" value="Submit" class="btn btn-default" id="btnQueryString" data-aos="fade-up" data-aos-delay="100">
+   <input type="submit" name="submit2" value="Use Current Location" class="btn btn-default" id="btnQueryString" data-aos="fade-up" data-aos-delay="100">
 </form>
+ 
 <!-- <a href="../Nearby Sites/Contacts.html" style="float: right;font-size: 22px;
   font-weight: bold;
   font-family: Georgia;

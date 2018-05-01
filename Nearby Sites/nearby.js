@@ -5,7 +5,7 @@ var request1, request2, request3, request4, request5, request6;
 var service;
 var markers = [];
 
-var text = document.getElementById('nearbyData');
+var cafeData = document.getElementById('cafeData');
 var ratLimit = "";
 var rate = "";
 var str = Array();
@@ -24,7 +24,7 @@ geocoder.geocode( { 'address': city}, function(results, status) {
 console.log(lat);
 console.log(lon);
 var center;
-function initialize1(){
+function initialize(){
 	// console.log("Hey");
 	str = [];
 	loop = 0;
@@ -137,11 +137,11 @@ function callback(results, status){
 }
 
 function sortFunction(a, b) {
-    if (a[1] === b[1]) {
+    if (a[2] === b[2]) {
         return 0;
     }
     else {
-        return (a[1] < b[1]) ? 1 : -1;
+        return (a[2] < b[2]) ? 1 : -1;
     }
 }
 
@@ -157,13 +157,14 @@ function createMarker(place){
 			review = "Not Available";
 		}
 		var dummy = place.name+"  "+place.rating+place.types[0]+review+"\n";
-		str.push([place.name, place.rating, place.types[0],review,"\n"]);
+		str.push(['!',place.name, place.rating, place.types[0],"\n"]);
 		str.sort(sortFunction);
 		console.log(str);
 		loop = loop+1;
-		text.textContent = str;
-		text.innerHTML = text.innerHTML.replace(/\n/gi, "<br />");
-		text.innerHTML = text.innerHTML.replace(/,/gi, " ");
+		cafeData.textContent = str;
+		cafeData.innerHTML = cafeData.innerHTML.replace(/\n/gi, "<br />");
+		cafeData.innerHTML = cafeData.innerHTML.replace(/,/gi, " ");
+		cafeData.innerHTML = cafeData.innerHTML.replace(/!/gi, "<li>");
 	}
 
 	var placeLoc = place.geometry.location;
@@ -203,6 +204,6 @@ function clearResults(markers){
 }
 
 
-google.maps.event.addDomListener(window, 'load', initialize1);
+google.maps.event.addDomListener(window, 'load', initialize);
 
 

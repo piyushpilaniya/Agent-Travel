@@ -1,25 +1,5 @@
 var geocoder;
-
-function initAutocomplete() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('YOUR_INPUT_ELEMENT_ID')),
-        {types: ['geocode']});
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
-  }
-
-  function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-
-  }
-
-
-  function getLocation() {
+ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
@@ -71,3 +51,9 @@ function codeLatLng(lat, lng) {
       }
     });
   }
+
+  function fun(){
+  document.getElementById('autocomplete').value = document.getElementById("prodId").value;
+  console.log("HI");
+  initMap();
+}

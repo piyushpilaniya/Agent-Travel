@@ -13,6 +13,7 @@
     
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/weather.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBlGQTCzJ2JtXevw8xPqL9AGeyrctFR7A4&libraries=places"></script>
@@ -23,7 +24,7 @@
 	
 </head>
 <body>
- <section class="site-hero overlay" style="background-image: url(img/pic_2.jpg)">
+ <section class="abc">
       <div class="container">
         <!-- <div class="row site-hero-inner justify-content-center align-items-center"> -->
           <div class="col-md-10 text-center">
@@ -102,7 +103,6 @@
 		        <iframe id="forecast_embed" frameborder="0" height="245" width="100%" src="https://forecast.io/embed/#lat=<?php echo $latitude; ?>&lon=<?php echo $longitude; ?>&name=<?php echo $city; ?>&font=Georgia"></iframe>
 
 		<?php endif; ?>
-		<link rel="stylesheet" type="text/css" href="index.css">
 		 <?php if($hobys == 'Hotels') :?>
 		 		<div id="htl">Hotels</div>
              	<script type="text/javascript">var city = "<?= $city ?>";</script>
@@ -124,6 +124,8 @@
         		<div id="htl">Nearby Sites</div>
              	<script type="text/javascript">var city = "<?= $city ?>";</script>
                 <script type="text/javascript">var rad = "<?= $radius ?>";</script>
+                <link rel="stylesheet" type="text/css" href="css/nearby.css">
+
 				<!-- <h1>The Default radius for search is 5 miles. Put your radius of interest if you want to(in meters)!</h1> -->
 				<!-- <form action="radius.php" method="post">
 				<input type="text" id="radius1"  placeholder="Radius" name="radius" />
@@ -135,12 +137,7 @@
 
 				<script type="text/javascript" async=false defer=false src="nearby.js"></script>
 		
-				<?php	
-					session_start();
-					$_SESSION['city'] = $city;
-					$_SESSION['chkbox'] = $chkbox;
-					$_SESSION['weather'] = $weather;
-					?>
+				
 
              <?php endif; ?>
 

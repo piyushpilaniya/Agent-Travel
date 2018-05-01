@@ -4,7 +4,7 @@
 	<title>Nearby Sites</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale = 1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="nearby.css">
+	<!-- <link rel="stylesheet" type="text/css" href="nearby.css"> -->
 
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -13,7 +13,8 @@
     
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/weather.css">
-	
+	<link rel="stylesheet" type="text/css" href="index.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBlGQTCzJ2JtXevw8xPqL9AGeyrctFR7A4&libraries=places"></script>
 	
@@ -22,17 +23,30 @@
 
 	
 </head>
-<body>
- <section class="site-hero overlay" style="background-image: url(img/pic_2.jpg)">
+<body >
+ <section class="abc">
       <div class="container">
         <!-- <div class="row site-hero-inner justify-content-center align-items-center"> -->
           <div class="col-md-10 text-center">
 
 	<?php
-	 $city = $_POST['city'];
-	 $chkbox = $_POST['chk'];
-	 $weather = "";
-	 // echo $city;
+	if(isset($_POST['submit1']))
+	{
+		 $city = $_POST['city'];
+		 $chkbox = $_POST['chk'];
+		 $weather = "";
+		 $depart = $_POST['depart'];
+	}	
+	else if (isset($_POST['submit2'])) {
+	     $city = $_POST['prodId'];
+		 $chkbox = $_POST['chk'];
+		 $weather = "";
+		 $depart = $_POST['depart'];
+	} 
+	else{
+		echo "string";
+	}
+	 // echo $depart;
 	 ?>
 	 <div id = 'CITY'>	
      <a href="../Home/entry1.php"><?php echo $city; ?></a></div>;
@@ -53,7 +67,7 @@
 					
 					?>
      <div class = "htls">Change rating limit: 
-                <select id="mySelect" onchange="initialize();initialize1()">
+                <select id="mySelect" onchange="initialize();initialize1();">
 				  <option value="4">4</option>
 				  <option value="1">1</option>
 				  <option value="2">2</option>
@@ -106,7 +120,6 @@
 		        <iframe id="forecast_embed" frameborder="0" height="245" width="100%" src="https://forecast.io/embed/#lat=<?php echo $latitude; ?>&lon=<?php echo $longitude; ?>&name=<?php echo $city; ?>&font=Georgia"></iframe>
 
 		<?php endif; ?>
-		<link rel="stylesheet" type="text/css" href="index.css">
 		 <?php if($hobys == 'Hotels') :?>
 		 		<div id="htl">Hotels</div>
              	<script type="text/javascript">var city = "<?= $city ?>";</script>
@@ -127,27 +140,68 @@
         		<div id="htl">Nearby Sites</div>
              	<script type="text/javascript">var city = "<?= $city ?>";</script>
                 <script type="text/javascript">var rad = 8047;</script>
-				
+				<link rel="stylesheet" type="text/css" href="css/nearby.css">
+
 				<div id="map"></div>
 				<a href="NearbyMap/NearbyMap.php" onclick="javascript:void window.open('NearbyMap/NearbyMap.php','1524914810588','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Click to see on Map</a>
-				<h1 id="nearbyData" class="htls"></h1> 
+				<h1 id="parkData" class="htls"></h1>
+				<h1 id="cafeData" class="htls"></h1>
+				<h1 id="galleryData" class="htls"></h1>
+				<h1 id="movieData" class="htls"></h1>
+				<h1 id="clubData" class="htls"></h1>
+				<h1 id="mallData" class="htls"></h1> 
 
 				<script type="text/javascript" async=false defer=false src="nearby.js"></script>
 		
-				
+				<br>
 
              <?php endif; ?>
 
 
 
         <?php if($hobys == 'Transportation') :?>
-        		<div id="htl">Emergency Numbers</div>
+        		<div id="htl">Transportation</div>
              	<script type="text/javascript">var city = "<?= $city ?>";</script>
                 <script type="text/javascript">var rad = 8047;</script>
-				<div id="mapping"></div>
-				<a href="NearbyMap/NearbyMap.php" onclick="javascript:void window.open('NearbyMap/NearbyMap.php','1524914810588','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Click to see on Map</a>
+                
+				<?php
+				$con=mysqli_connect("localhost","root","","travel_agent");
+				// Check connection
+				if (mysqli_connect_errno())
+				{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				}
+
+				$result = mysqli_query($con,"SELECT c.company_name, c.company_contact, b.departure_time, b.arrival_time FROM company  as c, vehicles as b where c.company_id = b.company_id and b.boarding_point='" .  $depart . "' and b.dropping_point = '" . $city . "';");
+				if (!$result) {
+			    printf("Error: %s\n", mysqli_error($con));
+			    exit();
+			}
+
+				echo "<table border='1' class='htls'>
+				<tr>
+				<th>Company Name</th>
+				<th>Company Contact</th>
+				<th>Departure Time</th>
+				<th>Arrival Time</th>
+				</tr>";
+
+				while($row = mysqli_fetch_array($result))
+				{
+				echo "<tr class='htls1'>";
+				echo "<td>" . $row['company_name'] . "</td>";
+				echo "<td>" . $row['company_contact'] . "</td>";
+				echo "<td>" . $row['departure_time'] . "</td>";
+				echo "<td>" . $row['arrival_time'] . "</td>";
+				echo "</tr>";
+				}
+				echo "</table>";
+
+				mysqli_close($con);
+				?>
+
 				<h1 id="numbers" class="htls"></h1>
-				<script type="text/javascript" src="number.js"></script>
+				<!-- <script type="text/javascript" src="number.js"></script> -->
 
 				
 

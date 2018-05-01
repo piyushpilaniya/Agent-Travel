@@ -8,7 +8,7 @@ var markers = [];
 var text = document.getElementById('data');
 var ratLimit = "";
 var rate = "";
-var str = "";
+var str = Array();
 console.log(city);
 var geocoder = new google.maps.Geocoder();
 var lat,lon;
@@ -24,7 +24,7 @@ console.log(lat);
 console.log(lon);
 console.log("hey");
 function initialize(){
-	str = "";
+	str = [];
 	loop = 1;
 	ratLimit = document.getElementById('mySelect');
 	rate = ratLimit.value;
@@ -76,19 +76,39 @@ function callback(results, status){
 
 }
 
+function sortFunction(a, b) {
+    if (a[3] === b[3]) {
+        return 0;
+    }
+    else {
+        return (a[3] < b[3]) ? 1 : -1;
+    }
+}
+
 function createMarker(place){
-	console.log("createMarker");
-	console.log(place.rating);
-	console.log(parseInt(rate));
+	// console.log("createMarker");
+	// console.log(place.rating);
+	// console.log(parseInt(rate));
 
 	if(place.rating>parseInt(rate))
 	{
 	var dummy = str + loop + ". " + place.name+"  "+place.rating+"\n";
-	str = dummy;
+	str.push(['!', place.name, "with a rating of",place.rating, "\n"]);
+	str.sort(sortFunction);
+	console.log(str);
+	console.log(str.length);
+	// for (var i = 0; i < str.length; i++) {
+	// 	str.splice(i, 0, [i, ". ",str[i][0], str[i][1], str[i][2]]); 
+	// }
+	console.log(str);
+	// str = dummy;
 	console.log(str);
 	loop = loop+1;
 	text.textContent = str;
-	text.innerHTML = text.innerHTML.replace(/\n/gi, "<br />");
+	text.innerHTML = text.innerHTML.replace(/\n/gi, "<br>");
+	text.innerHTML = text.innerHTML.replace(/,/gi, " ");
+	text.innerHTML = text.innerHTML.replace(/!/gi, "<li>");
+	
 	}
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({

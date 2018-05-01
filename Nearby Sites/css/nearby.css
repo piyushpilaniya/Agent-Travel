@@ -1,3 +1,15 @@
 .map{
 	overflow: visible !important;
 }
+
+#parkData,
+#cafeData,
+#galleryData,
+#movieData,
+#clubData,
+#mallData{
+	float: left;
+	font-size: 25px;
+	left: 0px;
+	text-align: left;
+}

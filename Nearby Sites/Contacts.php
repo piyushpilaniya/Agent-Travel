@@ -5,7 +5,7 @@
   
     <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="Contacts.css">
-
+  <script type="text/javascript" src="Current.js"></script>
 </head>
 <body>
 <?php
@@ -19,11 +19,19 @@ $type = $_GET['value'];
 <div id="findhotels">
  
 </div>
+ 
+  <input id="prodId" name="prodId" type="hidden" value="xm234jq">
+<script >
+ 
+  getLocation();
 
+  </script>
+
+<button name="submit" class="btn btn-default" id="btnQueryString" data-aos="fade-up" data-aos-delay="100" onclick="fun();">Use Current Location</button>
 <!-- <form method=POST name=exampleform id='locationField'> -->
-  <div id="locationField">
+  <span id="locationField">
   <input id="autocomplete" class="form-control" placeholder="Enter a city"   type="text" />
-</div>
+</span>
 <!-- </form> -->
 
 <!-- <div id="controls">
